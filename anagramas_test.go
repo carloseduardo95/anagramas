@@ -17,6 +17,15 @@ func TestAnagram(t *testing.T) {
 		maxWordNum int
 		wantError  bool
 	}{
+		// Meu Teste.
+		{
+			phrase:     "carro",
+			dictFile:   "testdata/words.txt",
+			wantFile:   "testdata/meuresults.txt",
+			minWordLen: 1,
+			maxWordLen: 64,
+			maxWordNum: 16,
+		},
 		// Uma thread.
 		{
 			phrase:     "marco paganini ab",

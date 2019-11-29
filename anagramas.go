@@ -129,15 +129,16 @@ func anagramas(frasemap MapaFrequencia, cand []string, base []string, numpalavra
 	}
 	numpalavras++
 
-	//fmt.Printf("Got base=%s\n", base)
-	leftmap := subtrairMapa(frasemap, base)
+	// maparestante é o que sobrou na palavra depois que voce "subtraiu" o mapa de outra.
+	// Tipo: BANANA - ANA = BAN
+	maparestante := subtrairMapa(frasemap, base)
 
 	// Combinação perfeita.
-	if mapaEstaVazio(leftmap) {
+	if mapaEstaVazio(maparestante) {
 		return append(ret, strings.Join(base, " "))
 	}
 
-	charsRestantes := tamMapa(leftmap)
+	charsRestantes := tamMapa(maparestante)
 
 	for ix := 0; ix < len(cand); ix++ {
 		palavraAtual := cand[ix]
@@ -149,7 +150,7 @@ func anagramas(frasemap MapaFrequencia, cand []string, base []string, numpalavra
 		}
 
 		// Recorra apenas se palavraAtual se encaixar nos caracteres restantes.
-		if !contemNoMapa(&leftmap, &palavraAtual) {
+		if !contemNoMapa(&maparestante, &palavraAtual) {
 			continue
 		}
 
